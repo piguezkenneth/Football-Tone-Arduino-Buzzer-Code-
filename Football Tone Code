@@ -1,0 +1,19 @@
+int buzzerPin = 9; // Change this to the pin connected to your buzzer
+int melody[] = {392, 330, 392, 330, 392, 330, 392, 330, 392, 330, 392, 330, 392, 330, 523, 392}; // Change this to the melody you want to play
+int noteDuration = 100; // Change this to the duration of each note in milliseconds
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+}
+
+void loop() {
+  for (int i = 0; i < sizeof(melody)/sizeof(melody[0]); i++) {
+    int note = melody[i];
+    if (note == 0) { // If the note is a pause, wait for the duration of the pause
+      delay(noteDuration);
+    } else { // Otherwise, play the note for the specified duration
+      tone(buzzerPin, note, noteDuration);
+    }
+    delay(noteDuration/2); // Add a small delay between notes
+  }
+}
